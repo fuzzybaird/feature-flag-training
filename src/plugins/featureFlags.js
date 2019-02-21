@@ -1,11 +1,11 @@
 import includes from "lodash/includes";
 import union from "lodash/union";
 export default {
-  install(Vue) {
+  install(Vue, options = { beta: false, components: [], groups: [] }) {
     Vue.prototype.$isFeature = {
-      beta: false,
-      components: [],
-      groups: []
+      beta: options.beta,
+      components: options.components,
+      groups: options.groups
     };
     Vue.prototype.$toggleable = {
       components: [],
