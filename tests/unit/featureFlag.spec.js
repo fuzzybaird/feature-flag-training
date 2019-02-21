@@ -15,6 +15,7 @@ describe("Feature Flag Implementation", () => {
     };
   });
 
+  //Check out branch step one
   it("should have a global object $isFeature with bolean attribute 'beta' on the vue instance", () => {
     // Arrange
     const wrapper = mount(FeatureOne, options);
@@ -33,19 +34,35 @@ describe("Feature Flag Implementation", () => {
 
   it("shows the component if a $isFeature.beta boolean exists on root vue instance", () => {
     // Arrange
+    // with beta disabled
     let localVue = createLocalVue();
-    localVue.use(featureFlags, { beta: true });
+    localVue.use(featureFlags, { beta: false });
 
     const wrapper = mount(FeatureOne, {
       toggleable: true,
       localVue
     });
 
+    // with beta enabled
+    let localVue2 = createLocalVue();
+    localVue2.use(featureFlags, { beta: true });
+
+    const wrapper2 = mount(FeatureOne, {
+      toggleable: true,
+      localVue: localVue2
+    });
+
     //Assert
-    expect(wrapper.vm.$isFeature.beta).toEqual(true);
-    expect(wrapper.text()).toEqual("Feature One");
+    // with beta disabled
+    expect(wrapper.vm.$isFeature.beta).toEqual(false);
+    expect(wrapper.text()).toEqual("");
+
+    // with beta enabled
+    expect(wrapper2.vm.$isFeature.beta).toEqual(true);
+    expect(wrapper2.text()).toEqual("Feature One");
   });
 
+  // Checkout step two
   it("should have a global object $isFeature with array attribute 'components' on the vue instance", () => {
     // Arrange
     const wrapper = mount(FeatureOne, options);
