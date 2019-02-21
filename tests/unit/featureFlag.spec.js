@@ -33,24 +33,16 @@ describe("Feature Flag Implementation", () => {
 
   it("shows the component if a $isFeature.beta boolean exists on root vue instance", () => {
     // Arrange
+    let localVue = createLocalVue();
+    localVue.use(featureFlags, { beta: true });
+
     const wrapper = mount(FeatureOne, {
-      mocks: { $isFeature: { beta: true } }
+      toggleable: true,
+      localVue
     });
 
     //Assert
-    expect(wrapper.text()).toEqual("Feature One");
-  });
-
-  it("shows when $isFeature.beta true", () => {
-    // Arrange
-    options.mocks["$isFeature"] = {
-      beta: true,
-      groups: [],
-      components: []
-    };
-    const wrapper = mount(FeatureOne, options);
-
-    //Assert
+    expect(wrapper.vm.$isFeature.beta).toEqual(true);
     expect(wrapper.text()).toEqual("Feature One");
   });
 
@@ -64,14 +56,16 @@ describe("Feature Flag Implementation", () => {
 
   it("shows when component name matches string in $isFeature.components array", () => {
     // Arrange
-    options.mocks["$isFeature"] = {
-      beta: false,
-      groups: [],
-      components: ["FeatureOne"]
-    };
-    const wrapper = mount(FeatureOne, options);
+    let localVue = createLocalVue();
+    localVue.use(featureFlags, { beta: true, components: ["featureone"] });
+
+    const wrapper = mount(FeatureOne, {
+      toggleable: true,
+      localVue
+    });
 
     //Assert
+    expect(wrapper.vm.$isFeature.components[0]).toEqual("featureone");
     expect(wrapper.text()).toEqual("Feature One");
   });
 
@@ -83,17 +77,19 @@ describe("Feature Flag Implementation", () => {
     expect(wrapper.vm.$isFeature.groups).toEqual([]);
   });
 
-  it("shows when component name matches string in $isFeature.group array", () => {
+  it("shows when component group name matches string in $isFeature.group array", () => {
     // Arrange
-    options["group"] = "realease-1";
-    options.mocks["$isFeature"] = {
-      beta: false,
-      components: [],
-      groups: ["realease-1"]
-    };
-    const wrapper = mount(FeatureOne, options);
+    let localVue = createLocalVue();
+    localVue.use(featureFlags, { beta: false, groups: ["may-release"] });
+
+    const wrapper = mount(FeatureOne, {
+      toggleable: true,
+      group: "may-release",
+      localVue
+    });
 
     //Assert
+    expect(wrapper.vm.$isFeature.groups[0]).toEqual("may-release");
     expect(wrapper.text()).toEqual("Feature One");
   });
 
