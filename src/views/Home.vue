@@ -6,7 +6,7 @@
       </div>
 
       <!-- Edit Features -->
-      <!-- <div class="row padding-15">
+      <div class="row padding-15">
         <h3>Toggleable Beta</h3>
         <div class="check">
           <label :for="beta">Beta</label>
@@ -31,7 +31,7 @@
           <label :for="comp">{{ comp }}</label>
           <input type="checkbox" :id="comp" :value="comp" v-model="groups" />
         </div>
-      </div> -->
+      </div>
       <!-- END Edit Features -->
 
       <div class="row features">

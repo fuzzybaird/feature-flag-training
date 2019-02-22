@@ -8,7 +8,7 @@
 export default {
   name: "FeatureThree",
   toggleable: true,
-  group: "jun-launch",
+  group: "june-launch",
   customOption: "foo"
 };
 </script>
