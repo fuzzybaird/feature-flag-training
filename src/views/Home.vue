@@ -49,17 +49,15 @@ export default {
   components: { FeatureOne, FeatureTwo, FeatureThree },
   watch: {
     beta(val) {
-      this.$isFeature.beta = val;
-    },
-    components(val) {
-      this.$isFeature.components = val;
-    },
-    groups(val) {
-      this.$isFeature.groups = val;
+      if (this.$isFeature) {
+        this.$isFeature.beta = val;
+      }
     }
   },
   mounted() {
-    this.beta = this.$isFeature.beta;
+    if (this.$isFeature) {
+      this.beta = this.$isFeature.beta || false;
+    }
   }
 };
 </script>
