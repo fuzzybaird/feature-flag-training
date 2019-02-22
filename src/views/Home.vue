@@ -60,10 +60,6 @@ export default {
   },
   mounted() {
     this.beta = this.$isFeature.beta;
-    this.componentsList = this.$toggleable.components;
-    this.groupsList = this.$toggleable.groups;
-    this.components = this.$isFeature.components;
-    this.groups = this.$isFeature.groups;
   }
 };
 </script>
