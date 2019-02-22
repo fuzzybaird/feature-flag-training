@@ -7,7 +7,6 @@
 <script>
 export default {
   name: "FeatureOne",
-  toggleable: true,
   group: "june-launch",
   customOption: "foo"
 };

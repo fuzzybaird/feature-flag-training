@@ -62,60 +62,60 @@ describe("Feature Flag Implementation", () => {
     expect(wrapper2.text()).toEqual("Feature One");
   });
 
-  // Checkout step two
-  it("should have a global object $isFeature with array attribute 'components' on the vue instance", () => {
-    // Arrange
-    const wrapper = mount(FeatureOne, options);
+  // // Checkout step two
+  // it("should have a global object $isFeature with array attribute 'components' on the vue instance", () => {
+  //   // Arrange
+  //   const wrapper = mount(FeatureOne, options);
 
-    //Assert
-    expect(wrapper.vm.$isFeature.components).toEqual([]);
-  });
+  //   //Assert
+  //   expect(wrapper.vm.$isFeature.components).toEqual([]);
+  // });
 
-  it("shows when component name matches string in $isFeature.components array", () => {
-    // Arrange
-    let localVue = createLocalVue();
-    localVue.use(featureFlags, { beta: true, components: ["featureone"] });
+  // it("shows when component name matches string in $isFeature.components array", () => {
+  //   // Arrange
+  //   let localVue = createLocalVue();
+  //   localVue.use(featureFlags, { beta: true, components: ["featureone"] });
 
-    const wrapper = mount(FeatureOne, {
-      toggleable: true,
-      localVue
-    });
+  //   const wrapper = mount(FeatureOne, {
+  //     toggleable: true,
+  //     localVue
+  //   });
 
-    //Assert
-    expect(wrapper.vm.$isFeature.components[0]).toEqual("featureone");
-    expect(wrapper.text()).toEqual("Feature One");
-  });
+  //   //Assert
+  //   expect(wrapper.vm.$isFeature.components[0]).toEqual("featureone");
+  //   expect(wrapper.text()).toEqual("Feature One");
+  // });
 
-  it("should have a global object $isFeature with array attribute 'groups' on the vue instance", () => {
-    // Arrange
-    const wrapper = mount(FeatureOne, options);
+  // it("should have a global object $isFeature with array attribute 'groups' on the vue instance", () => {
+  //   // Arrange
+  //   const wrapper = mount(FeatureOne, options);
 
-    //Assert
-    expect(wrapper.vm.$isFeature.groups).toEqual([]);
-  });
+  //   //Assert
+  //   expect(wrapper.vm.$isFeature.groups).toEqual([]);
+  // });
 
-  it("shows when component group name matches string in $isFeature.group array", () => {
-    // Arrange
-    let localVue = createLocalVue();
-    localVue.use(featureFlags, { beta: false, groups: ["may-release"] });
+  // it("shows when component group name matches string in $isFeature.group array", () => {
+  //   // Arrange
+  //   let localVue = createLocalVue();
+  //   localVue.use(featureFlags, { beta: false, groups: ["may-release"] });
 
-    const wrapper = mount(FeatureOne, {
-      toggleable: true,
-      group: "may-release",
-      localVue
-    });
+  //   const wrapper = mount(FeatureOne, {
+  //     toggleable: true,
+  //     group: "may-release",
+  //     localVue
+  //   });
 
-    //Assert
-    expect(wrapper.vm.$isFeature.groups[0]).toEqual("may-release");
-    expect(wrapper.text()).toEqual("Feature One");
-  });
+  //   //Assert
+  //   expect(wrapper.vm.$isFeature.groups[0]).toEqual("may-release");
+  //   expect(wrapper.text()).toEqual("Feature One");
+  // });
 
-  it("should have a global object $toggleable with array attributes 'components' & 'groups' on the vue instance", () => {
-    // Arrange
-    const wrapper = mount(FeatureOne, options);
+  // it("should have a global object $toggleable with array attributes 'components' & 'groups' on the vue instance", () => {
+  //   // Arrange
+  //   const wrapper = mount(FeatureOne, options);
 
-    //Assert
-    expect(Array.isArray(wrapper.vm.$toggleable.components)).toBe(true);
-    expect(Array.isArray(wrapper.vm.$toggleable.groups)).toBe(true);
-  });
+  //   //Assert
+  //   expect(Array.isArray(wrapper.vm.$toggleable.components)).toBe(true);
+  //   expect(Array.isArray(wrapper.vm.$toggleable.groups)).toBe(true);
+  // });
 });

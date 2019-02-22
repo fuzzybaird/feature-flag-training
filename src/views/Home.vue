@@ -13,25 +13,6 @@
           <input type="checkbox" :id="beta" :value="beta" v-model="beta" />
         </div>
       </div>
-      <div class="row padding-15">
-        <h3>Toggleable Components</h3>
-        <div v-for="comp in componentsList" :key="comp" class="check">
-          <label :for="comp">{{ comp }}</label>
-          <input
-            type="checkbox"
-            :id="comp"
-            :value="comp"
-            v-model="components"
-          />
-        </div>
-      </div>
-      <div class="row padding-15">
-        <h3>Toggleable Groups</h3>
-        <div v-for="comp in groupsList" :key="comp" class="check">
-          <label :for="comp">{{ comp }}</label>
-          <input type="checkbox" :id="comp" :value="comp" v-model="groups" />
-        </div>
-      </div>
       <!-- END Edit Features -->
 
       <div class="row features">
